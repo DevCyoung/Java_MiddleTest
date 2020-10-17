@@ -1,0 +1,96 @@
+package SoloTest;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import MiddleTest.Init;
+
+
+
+class ComboPro extends Frame implements ActionListener , ItemListener{
+	
+	TextField tf1 = new TextField("NULL");
+	TextField tf2 = new TextField("NULL");
+	
+	Button remove = new Button("REMOVE");
+	Button append = new Button("ADD");
+	Choice choice = new Choice();
+	
+	String[] colors = new String[] {"red" , "blue" , "yellow"};
+	
+	public ComboPro(String title) {
+		super(title);
+		super.setLayout(new BorderLayout());
+		
+		remove.addActionListener(this);
+		append.addActionListener(this);
+		choice.addItemListener(this);
+		
+		for(int i = 0; i < colors.length; i++) {
+			choice.add(colors[i]);
+		}
+		
+		Panel p1 = new Panel(new FlowLayout());
+		p1.add(choice);
+		p1.add(tf1);
+		p1.add(remove);
+		super.add(p1 , BorderLayout.NORTH);
+		
+		Panel p2 = new Panel(new FlowLayout());
+		p2.add(tf2);
+		p2.add(append);
+		super.add(p2 , BorderLayout.SOUTH);
+		
+		Init.Init(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String name = e.getActionCommand();
+		
+		
+		switch(name) {
+		case "REMOVE":
+			if( choice.getItemCount() == 0)
+				return;
+			choice.remove(choice.getSelectedIndex());
+			tf1.setText( choice.getSelectedItem());
+			break;
+		case "ADD":
+			if(tf2.getText() == "" || tf2.getText() == null )
+				return;
+			
+			choice.add(tf2.getText());
+			choice.select(choice.getItemCount()-1);
+			tf1.setText(tf2.getText());
+			break;
+		}
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		
+		tf1.setText( choice.getSelectedItem());
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+}
+
+public class ComboBox {
+
+	public static void main(String[] args) {
+		ComboPro pro = new ComboPro("pro");
+		
+
+	}
+
+}
