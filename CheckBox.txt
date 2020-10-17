@@ -1,0 +1,90 @@
+package MiddleTest;
+
+import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+class CheckPro extends Frame implements ItemListener{
+	private Checkbox Title = new Checkbox("제목" , false);
+	
+	private Panel CheckBoxpanel = new Panel(new BorderLayout());
+	
+	
+	private CheckboxGroup ColorBoxGroup = new CheckboxGroup();
+	private Checkbox yellow = new Checkbox("YELLOW" ,ColorBoxGroup ,false);
+	private Checkbox red = new Checkbox("RED" ,ColorBoxGroup ,false);
+	private Checkbox blue = new Checkbox("BLUE" ,ColorBoxGroup ,false);
+	
+	
+	
+	public CheckPro(String title) {
+		super(title);
+		super.setLayout(new BorderLayout());
+		
+		yellow.addItemListener(this);
+		red.addItemListener(this);
+		blue.addItemListener(this);
+		
+		
+		CheckBoxpanel.add(yellow , BorderLayout.NORTH);
+		CheckBoxpanel.add(red ,BorderLayout.CENTER);
+		CheckBoxpanel.add(blue , BorderLayout.SOUTH);
+		
+		
+		
+		super.add(Title , BorderLayout.NORTH);
+		super.add(CheckBoxpanel , BorderLayout.SOUTH);
+		
+		Init.Init(this , 300,150);
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		String name = e.getItem().toString();
+		System.out.println(name);
+		switch(name){
+			case "RED":
+				super.setBackground(Color.red);
+				break;
+			case "YELLOW":
+				super.setBackground(Color.yellow);
+				break;
+			case "BLUE":
+				super.setBackground(Color.blue);
+				break;
+			default:
+				break;
+					
+		}
+		
+		
+	}
+	
+}
+
+
+
+
+
+public class CheckBoxDemo {
+
+	public static void main(String[] args) {
+		CheckPro pro = new CheckPro("Pro");
+		
+
+	}
+
+}
