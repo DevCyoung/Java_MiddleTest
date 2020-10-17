@@ -1,0 +1,121 @@
+package MiddleTest;
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.*;
+
+
+class ListPro extends Frame{
+	
+	private Button b1 = new Button(">");
+	private Button b2 = new Button("<");
+	
+	private String[] Colors = new String[] {"RED" , "GREEN" , "YELLOW" , "MAX"};
+	
+	private List l1 = new List(4);
+	private List l2 = new List(4);
+	
+	
+	public ListPro(String title) {
+		super(title);
+		super.setLayout(new FlowLayout());
+		
+		for(int i = 0; i < Colors.length; i++ )
+		{
+			l1.add(Colors[i]);
+		}
+	
+		
+		Panel p = new Panel(new BorderLayout());	
+		p.add(b1 , BorderLayout.NORTH);
+		p.add(b2 , BorderLayout.SOUTH);
+		
+		l1.setMultipleMode(true);
+		l2.setMultipleMode(true);
+		
+		super.add(l1);
+		super.add(p);
+		super.add(l2);
+		
+		b1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if( l1.getSelectedItems() == null )
+					return;
+				System.out.println("true");
+				
+				String[] str = l1.getSelectedItems();
+				int[] intA = l1.getSelectedIndexes();
+				
+				System.out.println(str.length);
+				System.out.println(intA.length);
+				
+				for(int i =0; i < str.length; i++) {
+					
+					l2.add(str[i]);
+					l1.remove(str[i]);
+				}
+				
+				
+				
+			}
+		});
+		b2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if( l2.getSelectedItems() == null )
+					return;
+				System.out.println("true");
+				
+				String[] str = l2.getSelectedItems();
+				int[] intA = l2.getSelectedIndexes();
+				
+				System.out.println(str.length);
+				System.out.println(intA.length);
+				
+				for(int i =0; i < str.length; i++) {
+					
+					l1.add(str[i]);
+					l2.remove(str[i]);
+				}
+				
+			}
+		});
+		
+		
+		Init.Init(this);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+public class ListDemo {
+
+	public static void main(String[] args) {
+		ListPro pro = new ListPro("Pro");
+		
+
+
+	}
+
+}
