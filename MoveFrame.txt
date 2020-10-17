@@ -1,0 +1,109 @@
+package MiddleTest;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+class EventPro extends Frame implements KeyListener{
+	
+	private int MoveScale = 2;
+	
+	
+
+	
+	
+	public EventPro(String title) {
+		super(title);
+		super.addKeyListener(this);
+		Init.Init(this , 300 ,300);
+	}
+	
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		 Move(e.getKeyCode());
+		 ColorChange(e.getKeyChar());
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
+	
+	}
+	
+	private void Move(int KeyCode) {
+		
+		int x = super.getLocation().x;
+		int y = super.getLocation().y;
+		
+		
+		switch (KeyCode) {
+			case KeyEvent.VK_LEFT:
+				x -= MoveScale; 
+				System.out.print("as");
+				break;
+			case KeyEvent.VK_RIGHT:
+				x += MoveScale;
+				break;
+			case KeyEvent.VK_UP:
+				y -= MoveScale;
+				break;
+			case KeyEvent.VK_DOWN:
+				y += MoveScale;
+				break;
+			default:
+				return;
+				
+		}
+		super.setLocation(x, y);
+		
+		
+		
+		
+		
+		
+	}
+	private void ColorChange(char KeyChar) {
+		switch (KeyChar) {
+			case 'r':
+				super.setBackground(Color.red);
+				break;
+			case 'b':
+				super.setBackground(Color.blue);
+				break;
+			case 'g':
+				super.setBackground(Color.green);
+				break;
+			default:
+				break;
+					
+			
+		
+		
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+public class EventDemo {
+
+	public static void main(String[] args) {
+		EventPro pro = new EventPro("pro");
+		
+	}
+
+}
