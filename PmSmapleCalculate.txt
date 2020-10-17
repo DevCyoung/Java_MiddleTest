@@ -1,0 +1,69 @@
+package MiddleTest;
+
+import java.awt.Button;
+import java.awt.Choice;
+import java.awt.Dialog;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+public class Init {
+	
+
+	public static void Init(Frame frame, int xSize ,int  ySize)
+	{
+		frame.pack();
+		frame.setSize(xSize, ySize);
+		frame.setLocation(400,400);
+		frame.setVisible(true);
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+	}
+	public static void Init(Frame frame)
+	{
+		frame.pack();
+		frame.setLocation(400,400);
+		frame.setVisible(true);
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+	}
+	
+	public static void Init(Dialog frame, int xSize ,int  ySize)
+	{
+		frame.pack();
+		frame.setSize(xSize, ySize);
+		frame.setLocation(400,400);
+		frame.setVisible(true);
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.out.print(클로싱 클릭);
+				frame.dispose();
+			}
+		});
+		
+	}
+	public static void Init(Dialog frame)
+	{
+		frame.pack();
+		frame.setLocation(400,400);
+		frame.setVisible(true);
+		
+		
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.out.print(클로싱 클릭);
+				frame.dispose();
+			}
+		});
+	}
+}
