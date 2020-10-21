@@ -1,0 +1,133 @@
+package MiddleTest;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+
+class GridPro01 extends Frame implements ActionListener{
+	TextField tf = new TextField();
+	
+	Button[] buttons = new Button[] {
+			new Button("7"),
+			new Button("8"),
+			new Button("9"),
+			new Button("4"),
+			new Button("5"),
+			new Button("6"),
+			new Button("1"),
+			new Button("2"),
+			new Button("3"),
+			new Button("0"),
+			new Button("."),
+			new Button("+"),
+			new Button("/"),
+			new Button("*"),
+			new Button("-"),
+			new Button("%"),
+			new Button("1/x"),
+			new Button("=")
+			
+	};
+	
+	GridBagLayout grid = new GridBagLayout();
+	
+	Panel p1 = new Panel(new BorderLayout());
+	Panel p2 = new Panel(grid);
+	
+	// bag으로 해야함
+	GridBagConstraints gbc = new GridBagConstraints();
+	
+
+	
+	
+	public GridPro01(String title) {
+		super(title);
+		
+		 // setLayout(new GridLayout(2,1));
+		setLayout(new BorderLayout() );
+		
+		super.add(p1 );
+		p1.add(tf );
+		p2.setLayout(grid);
+		
+		super.add(p2 , BorderLayout.SOUTH);
+		super.add(p1 , BorderLayout.CENTER);
+		
+		gbc.fill = GridBagConstraints.BOTH;
+		
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+
+		Make(buttons[0],0,0,1,1);
+		Make(buttons[1],1,0,1,1);
+		Make(buttons[2],2,0,1,1);
+		Make(buttons[3],0,1,1,1);
+		Make(buttons[4],1,1,1,1);
+		Make(buttons[5],2,1,1,1);
+		Make(buttons[6],0,2,1,1);
+		Make(buttons[7],1,2,1,1);
+		Make(buttons[8],2,2,1,1);
+		Make(buttons[9],0,3,2,1);
+		Make(buttons[10],2,3,1,1);
+		Make(buttons[11],3,3,1,1);
+		Make(buttons[12],3,0,1,1);
+		Make(buttons[13],3,1,1,1);
+		Make(buttons[14],3,2,1,1);
+		
+		Make(buttons[15],4,0,1,1);
+		Make(buttons[16],4,1,1,1);
+		Make(buttons[17],4,2,1,2);
+		
+		
+		
+		
+		for(int i = 0; i< buttons.length; i++) {
+			buttons[i].addActionListener(this);
+			
+		}
+		
+	
+		Init.Init(this);
+	
+		
+	
+		
+	}
+	  public void Make(Button b, int x, int y, int w, int h) {
+
+          gbc.gridx = x;
+          gbc.gridy = y;
+          gbc.gridwidth = w;
+          gbc.gridheight = h;
+          grid.setConstraints(b, gbc);
+          p2.add(b);
+
+   }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String text = tf.getText();
+		tf.setText( text + e.getActionCommand().toString() );
+	}
+
+	
+}
+
+
+
+
+
+
+
+
+
+public class GridDemo01 {
+
+	public static void main(String[] args) {
+		GridPro01 pro = new GridPro01("pro");
+		
+
+	}
+
+}
